@@ -1,0 +1,20 @@
+<?php
+function conecta(){
+$host    =  'localhost';
+$username=  'root';
+$password=  'theblackwolf';
+$dbName  = 'theblackwolf';
+$conn    = mysql_connect($host,$username,$password);
+if($conn){
+return  true;	
+}else{
+return  false;
+$dbCon  = mysql_db_name($dbName, $conn);
+if ($dbCon)
+{
+	echo 'deu certa sa poha';
+}else {
+    echo 'nao deu certo sa poha';	
+}
+}
+}

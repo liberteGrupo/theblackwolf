@@ -1,0 +1,17 @@
+<html>
+<head>
+<title></title>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+$()
+
+
+</script>
+</head>
+<body>
+<form action="" method="post">
+Busca:<input type="text" name="busca"><input type="range" />
+
+</form>
+</body>
+</html>

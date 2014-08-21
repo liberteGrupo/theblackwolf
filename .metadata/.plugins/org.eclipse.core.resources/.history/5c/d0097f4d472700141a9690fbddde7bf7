@@ -1,0 +1,30 @@
+<?php
+function conecta(){
+$host    =  'localhost';
+$username=  'root';
+$password=  'theblackwolf';
+$dbName  = 'theblackwolf';
+$conn    = mysql_connect($host,$username,$password);
+if($conn){
+return  true;	
+echo 'deu certo a conn';
+}else{
+return  false;
+$dbCon  = mysql_db_name($dbName, $conn);
+if ($dbCon)
+{
+	echo 'deu certa sa poha';
+}else {
+    echo 'nao deu certo sa poha';	
+}
+}
+}
+
+
+conecta();
+$id  = '1';
+$query = "SELECT * FROM cliente WHERE ID_CLIENTE = '$id'";
+$result = mysql_query($query);
+$ln     = mysql_fetch_object($result);
+$ln->NOME_CLIENTE;
+$ln->EMAIL_CLIENTE;
