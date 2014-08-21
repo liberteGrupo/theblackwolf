@@ -251,6 +251,11 @@ $url = $paymentRequest->register($credentials);
 <div  class="finalizar_pedido_2">
 <input type="submit" class="botao" name="enviar" value="Finalizar " />
 </div>
+    <?php
+    if(!(isset($_SESSION['cod_usuario']))){
+        
+    }else{
+    ?>
     <div class="endereco_entrega_finaliza_pedido">
   <label>Endereco de onde será entregue o produto</label>
              <?php 
@@ -267,6 +272,7 @@ $url = $paymentRequest->register($credentials);
      echo '<b>Numero :</b>'.$usuarios['NUMERO'].'<br>'; 
     
         }
+    }
         ?>        
            </div>  
     
