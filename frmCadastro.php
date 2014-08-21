@@ -69,17 +69,17 @@ else
 return true;
 }
 function MascaraCep(cep){
-                if(mascaraInteiro(cep)==false){
-                event.returnValue = false;
-        }       
-        return formataCampo(cep, '00.000-000', event);
+		if(mascaraInteiro(cep)==false){
+		event.returnValue = false;
+	}	
+	return formataCampo(cep, '00.000-000', event);
 }
 
-function MascaraTelefone(tel){  
-        if(mascaraInteiro(tel)==false){
-                event.returnValue = false;
-        }       
-        return formataCampo(tel, '(00) 0000-0000', event);
+function MascaraTelefone(tel){	
+	if(mascaraInteiro(tel)==false){
+		event.returnValue = false;
+	}	
+	return formataCampo(tel, '(00) 0000-0000', event);
 }
 //adiciona mascara ao CPF
 function MascaraCPF(cpf){
@@ -88,17 +88,11 @@ function MascaraCPF(cpf){
 	}	
 	return formataCampo(cpf, '000.000.000-00', event);
 }
-function MascaraCPF(cpf){
-        if(mascaraInteiro(cpf)==false){
-                event.returnValue = false;
-        }       
-        return formataCampo(cpf, '000.000.000-00', event);
-}
 //valida telefone
 function ValidaTelefone(tel){
-        exp = /\(\d{2}\)\ \d{4}\-\d{4}/
-        if(!exp.test(tel.value))
-                alert('Numero de Telefone Invalido!');
+	exp = /\(\d{2}\)\ \d{4}\-\d{4}/
+	if(!exp.test(tel.value))
+		alert('Numero de Telefone Invalido!');
 }
 
 //valida data
@@ -127,31 +121,6 @@ function ValidarCPF(Objcpf){
 	var digitoGerado=(soma1*10)+soma2;
 	if(digitoGerado!=digitoDigitado)	
 		alert('CPF Invalido!');		
-}
-function ValidaCep(cep){
-        exp = /\d{2}\.\d{3}\-\d{3}/
-        if(!exp.test(cep.value))
-                alert('Numero de Cep Invalido!');               
-}
-function ValidarCPF(Objcpf){
-        var cpf = Objcpf.value;
-        exp = /\.|\-/g
-        cpf = cpf.toString().replace( exp, "" ); 
-        var digitoDigitado = eval(cpf.charAt(9)+cpf.charAt(10));
-        var soma1=0, soma2=0;
-        var vlr =11;
-
-        for(i=0;i<9;i++){
-                soma1+=eval(cpf.charAt(i)*(vlr-1));
-                soma2+=eval(cpf.charAt(i)*vlr);
-                vlr--;
-        }       
-        soma1 = (((soma1*10)%11)==10 ? 0:((soma1*10)%11));
-        soma2=(((soma2+(2*soma1))*10)%11);
-
-        var digitoGerado=(soma1*10)+soma2;
-        if(digitoGerado!=digitoDigitado)        
-                alert('CPF Invalido!');         
 }
 
 //valida numero inteiro com mascara
@@ -190,7 +159,7 @@ function formataCampo(campo, Mascara, evento) {
 		campo.value = NovoValorCampo;
 		  return true; 
 	}else { 
-		  return true; 
+		return true; 
 	}
 }
 
@@ -277,15 +246,18 @@ include 'includes/menu.php';
     </td>
     </tr>
     <tr>
-         
+      <td><label>DDD:</label></td>
+      <td><input name="ddd" type="text" id="ddd" size="4" maxlength="2" />
       <label>Telefone:</label>
-<input type="text" name="telefone" id="tel"onKeyPress="MascaraTelefone(form1.tel);" 
-maxlength="14"  onBlur="ValidaTelefone(form1.tel);">
+<input type="text" name="tel" id="contact" onKeyPress="MascaraTelefone(form_cadastro.tel);" 
+maxlength="14"  onBlur="ValidaTelefone(form_cadastro.tel);">
         </td>
     </tr>
     <tr>
+      <td><label>DDD:</label></td>
+      <td><input name="tel" type="tel" id="ddd" size="4" maxlength="2" />
        <label> Celular:</label> 
-<input type="tel" name="celular" id="tel" onKeyPress="MascaraTelefone(form_cadastro.tel);" 
+<input type="tel" name="tel" id="contact" onKeyPress="MascaraTelefone(form_cadastro.tel);" 
 maxlength="14"  onBlur="ValidaTelefone(form_cadastro.tel);">
        </td>
     </tr>
@@ -344,14 +316,14 @@ maxlength="14"  onBlur="ValidaTelefone(form_cadastro.tel);">
     <tr>
       <td><label>Cep:</label></td>
       <td>
-<input type="text" id="contact" name="cep" onKeyPress="MascaraCep(form1.cep);"
- maxlength="10" onBlur="ValidaCep(form1.cep)">
+<input type="text" name="cep" id="contact" onKeyPress="MascaraCep(form_cadastro.cep);"
+ maxlength="10" onBlur="ValidaCep(form_cadastro.cep)">
         </td>
     </tr>
     <tr>
       <td><label>CPF:</label></td>
-      <td><input type="text" name="cpf" id="contact" onBlur="ValidarCPF(form1.cpf);" 
-onKeyPress="MascaraCPF(form1.cpf);" maxlength="14">
+      <td><input type="text" name="cpf" onBlur="ValidarCPF(form_cadastro.cpf);" 
+                 onKeyPress="MascaraCPF(form_cadastro.cpf);" maxlength="14" id="contact"> 
       </td>
     </tr>
     <tr>
@@ -361,7 +333,7 @@ onKeyPress="MascaraCPF(form1.cpf);" maxlength="14">
     </tr>
       <tr><br>
       <td colspan="2"><input name="news" type="checkbox" id="news" value="ATIVO"  />
-<label>Assino os termons de uso do site</label> </td>
+<label>Assino os termos de uso do site</label> </td>
     </tr>
     <tr>
       <td colspan="2"><p><br>
