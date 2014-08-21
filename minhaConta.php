@@ -54,7 +54,7 @@ include 'includes/menu.php';
  $results = mysql_query("SELECT * FROM cliente RIGHT OUTER JOIN endereco ON cliente.ID_CLIENTE ='$cod_usuario' WHERE cliente.ID_ENDERECO =  endereco.ID_ENDERECO");
  $usuarios = mysql_fetch_array($results) ; 
       echo '<a href="alterarSenha.php?codigo='.$usuarios['ID_CLIENTE'].'"> Informações de conta </a><br>';
-      echo '<a href="listaEndereco.php?codigo='.$usuarios['ID_ENDERECO'].'"> Endereco </a><br>';
+      echo '<a href="listaEndereco.php?codigo='.$usuarios['ID_ENDERECO'].'"> Enderecos </a><br>';
 ?>
 <a href="meusPedidos.php"> Meus Pedidos </a><br>
 <a href="cadastroNews.php"> Cadastro de Newsletter </a>

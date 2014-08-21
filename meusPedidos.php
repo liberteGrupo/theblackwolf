@@ -59,8 +59,8 @@ include 'includes/menu.php';
  $usuarios = mysql_fetch_array($results) ; 
  $codigo_usuario = $usuarios['ID_CLIENTE'];
       echo '<a href="alterarSenha.php?codigo='.$usuarios['ID_CLIENTE'].'"> Informações de conta </a><br>';
+      echo '<a href="listaEndereco.php?codigo='.$usuarios['ID_ENDERECO'].'"> Endereco </a><br>';
  ?>
-<a href="listaEndereco.php"> Enderecos </a><br>
 <a href="meusPedidos.php"> Meus Pedidos </a><br>
 <a href="cadastroNews.php"> Cadastro de Newsletter </a>
 </aside>
