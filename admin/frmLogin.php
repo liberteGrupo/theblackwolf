@@ -40,8 +40,11 @@ body{}
 		
 </style>    
     <body>  
-    
-     <form action="system/system.php" method="post">
+    <?php
+    require 'system/system.php';
+    logar();
+    ?>
+     <form action="" method="post">
 <div id="login-box-interno">
 <div id="login-box-label">Login Administrador </div>
  <table width="346" align="center" >
