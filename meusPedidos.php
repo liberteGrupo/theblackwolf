@@ -65,7 +65,7 @@ include 'includes/menu.php';
 <a href="cadastroNews.php"> Cadastro de Newsletter </a>
 </aside>
 </div>
-    <div class="conteudo_informacoes_pedido">
+  <div class="conteudo_informacoes_pedido">
         <b>Seus Pedidos </b><br> 
 
       <?php
@@ -146,14 +146,8 @@ echo '</table>';
    }
    ?>
       </div>
-   
-
-
-
   </div> </div>   
-
 <div id="footer">
-
 <div id="mapa1">/
   CDS  <br />  
   	<a href="sobrenos.php">Pop</a> <br />
