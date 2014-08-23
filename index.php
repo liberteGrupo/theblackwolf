@@ -63,11 +63,24 @@ include 'includes/menu.php';
 <table border="1" width="500" class="bordasimples" cellspacing="8" bgcolor="#990000">
 
   <tr>
-    <td><a href="#" class="efeito">T shirt Lançamento<img src="images/img1.jpg" name="img1" width="240" height="350" id="img1"></a> Preço : R$ 50,00</td>
-    <td><a href="#" class="efeito">T shirt lançamento<img src="images/img2.jpg" name="img2" width="240" height="350" id="img2">Preço : R$ 50,00</td></a>
-    <td><a href="#" class="efeito">T shirt lançamento<img src="images/img4.jpg" width="240" height="350">Preço : R$ 50,00</td></a>
-    <td><a href="#" class="efeito">T shirt lançamento<img src="images/img6.jpg" width="240" height="350">Preço : R$ 50,00</td></a> 
-  </tr>
+       </div>
+              <tr>   
+                <?php
+   $produtos        = ("SELECT * FROM produto  ORDER BY ID_PRODUTO DESC LIMIT 0,4");
+   $listar_produtos = mysql_query($produtos);
+   $i    = 0;
+   $loop = 4;
+   while($produto = mysql_fetch_array($listar_produtos)){
+    if($i < $loop){
+        ?> 
+         <td><a href="detalhesProduto.php?acao=add&id=<?php echo $produto['ID_PRODUTO'] ?>" class="efeito"><?php echo $produto['NOME_PRODUTO'];?>
+                 <img src="images/<?php echo $produto['PRODUTO_IMAGEM'];?>" name="img1" width="250" height="300" id="img1">
+             Preço : R$<?php echo $produto['PRECO_PRODUTO'];?></a></td> 
+</div>
+ <?php
+  }
+   }
+   ?>
 </table>
 
   <p>&nbsp;</p>
@@ -76,9 +89,8 @@ include 'includes/menu.php';
 <div id="newsletter">
 <form action="admin/system/news.php" method="post">
  <label>Newsletter</label><br/>
-Cadastre seu email para receber informações de produtos, novidades e promoções:<br/><br/>
+Cadastre seu email para receber informações de produtos e ofertas :<br/><br/>
  Nome:<input type="text" name="nome" id="nome" /><br>
-
  Email:<input type="text" name="email" id="email" /> <br><br><input type="submit" value="Enviar"  name="enviar" class="boton">
   </center> 
   </form>

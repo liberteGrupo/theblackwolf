@@ -58,7 +58,7 @@ $selecionaCategs = mysql_query("SELECT * FROM categoria INNER JOIN subcategoria 
   while($lnCateg = mysql_fetch_array($selecionaCategs)){
 ?>
        <div>
-         <a href="categoria.php?id=<?php echo $lnCateg['ID_CATEGORIA']; ?> " >
+         <a href="categoria.php?categoria=<?php echo $lnCateg['ID_CATEGORIA']; ?> " >
          <?php echo $lnCateg['NOME_SUBCATEGORIA']; ?>
          </a>
          <br>
@@ -83,7 +83,7 @@ Ordenar Por:
        </div>
               <tr>   
                 <?php
-   $produtos = ("SELECT * FROM produto  ORDER BY ID_PRODUTO DESC");
+   $produtos = ("SELECT * FROM produto INNER JOIN categoria ON produto.ID_CATEGORIA =  categoria.ID_CATEGORIA  WHERE NOME_CATEGORIA = 'cd'");
    $listar_produtos = mysql_query($produtos);
    $i = 2;
    $loop = 5;
@@ -97,7 +97,6 @@ Ordenar Por:
           <label><?php echo $produto['NOME_PRODUTO']; ?></label>
           <p class="preco"> <span id="old-price-6"></span>R$<?php echo $produto['PRECO_PRODUTO']; ?></p>
        <a  href="detalhesProduto.php?acao=add&id=<?php echo $produto['ID_PRODUTO'] ?>"></a>     
-     
 </div>
  <?php
   }elseif($i === $loop){

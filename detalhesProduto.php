@@ -200,6 +200,8 @@ include 'includes/menu.php';
         <br/>
     </div> 
 	<?php
+       
+
 if(isset($_POST['enviar']))
 {
   if(empty($_POST['comentario'])){
@@ -226,6 +228,9 @@ location.href="pop.php"
    <div id="detalhes_produto">
  <label>Comentarios:</label>
 <?php
+if(empty($cod_usuario)){
+
+}else{
 $sql            = mysql_query("SELECT * FROM comentario WHERE ID_PRODUTO = '$id'");
 $result         = mysql_num_rows($sql);
     if($result <= 0){
@@ -252,6 +257,7 @@ while ($lnComentario   = mysql_fetch_assoc($result)) {
     <input type="submit" name="enviar" value="Enviar" class="botaoAdm">
   </form>
 <?php
+}
 }
 ?>
          </div></a>

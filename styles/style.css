@@ -490,7 +490,7 @@ padding-top: 1px;
 		margin-bottom:4px;}
 .efeito {
 	opacity: 0.8; filter:alpha(opacity=80);
-    
+        
 }
 .efeito:hover
  {
@@ -1309,6 +1309,13 @@ margin-top: -5px;
     text-align: center;
     margin-left: 50px;
    }
+ .box_lancamentos{
+    width: 200px;
+    display: block;
+    text-align: center;
+    margin-left: 50px;
+    color: whitesmoke;
+   }  
    .imagem{
    	margin: 0 auto;
 width: 200px;

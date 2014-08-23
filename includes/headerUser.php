@@ -11,7 +11,7 @@
 
 <div id="dv1">
 
-    <form action=""  class="busca" >
+<form action="search.php"  class="busca" >
     <input type="text" name="busca" value="o que deseja?"  id="busca"><input type="submit" name="enviar" class="botoes" />
 </form>
 <a id="show-panel" href=""></a>
