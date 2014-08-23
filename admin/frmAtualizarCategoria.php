@@ -85,7 +85,7 @@ Lembrar minha senha
     </ul>
 </nav>
 
-    <div class="form_cadastro">
+    <div >
            <?php
               $cod_categoria = intval($_GET['codigo']);
               $sql = mysql_query("SELECT * FROM categoria RIGHT OUTER JOIN subcategoria ON categoria.ID_CATEGORIA  ='$cod_categoria'");
@@ -102,13 +102,13 @@ exit();
               echo "listaCategorias.php";
             }
         ?>
-         <h1>Cadastro de Categoria</h1>
+         <h1>Atualizar Registros</h1>
          <form id="meu_form" action="" method="post" name="atualizar" >
 		<!--Login:<br />-->
-                <label>Nome Categoria</label><br><br>
+                <label>Nome Categoria</label><br>
                 <input type="text" name="categoria" value="<?php echo $nome; ?>" />
 		<br/>
-                <label>Nome Subcategoria</label><br><br>
+                <label>Nome Subcategoria</label><br>
                 <input type="text" name="subcategoria" value="<?php echo $nomeSubCategoria; ?>" /><br/><br/>
                 <input name="acao" type="hidden" value="<?php echo $categoria['ID_CATEGORIA']; ?>" >
                 <input type="submit" class="botao" name="atualiza" value="Atualizar" />&nbsp;&nbsp;
@@ -118,58 +118,6 @@ exit();
 
 </div>
 </div>
-
-
-<div id="footer">
-
-<div id="mapa1">
-  CDS  <br />  
-  	<a href="pop.html">Pop</a> <br />
-    <a href="#">Rock</a><br />
-    <a href="#">Punk</a><br />
-    <a href="#">Metal</a><br />
-    <a href="#">Eletronica</a><br />
-</div>
-
-<div id="mapa2">
-CAMISETAS<br />
-<a href="#">Feminino</a><br />
-<a href="#">Masculino</a>
- </div>
-
-<div id="pagamento">
- FORMAS DE PAGAMENTO <br />
-<img src="../images/pagamento.jpg" width="142" height="131"/>
-</div><div id="rodapelogo">
- <img src="../images/logo.png" width="160" height="170"/><br/>
- <font color="#FFFFFF"> The Black wolf 2014
- </div></font>
-
-<div id="redes">
-REDES SOCIAIS<br />
-<a href="#"><img src="../images/insta.jpg"/></a>
-<a href="#"><img src="../images/face.jpg" /></a>
-<a href="#"><img src="../images/twitter.jpg" /></a>
-</div>
-
-<script type="text/javascript">
-	// Load jQuery
-	google.load("jquery", "1.3");
-
-	google.setOnLoadCallback(function() {
-		// Seu código aqui
-	});
-</script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("a#show-panel").click(function() {
-      ../;
-        })
-        $("a#close-panel").click(function() {
-            $("#lightbox, #lightbox-panel").fadeOut(300);
-        })
-    })
-</script>
 
 </body>
 </html>

@@ -3,7 +3,9 @@ include 'conexao/conecta.inc';
 if(filter_var(isset($_GET['token']), FILTER_VALIDATE_INT)){
 $token   = $_GET['token'];
 if($_GET['token'] === ''){
-header('Location:index.php');
+echo '<script language="Javascript">
+location.href="index.php"
+</script>';
 }else{
 $sql     = "SELECT * FROM newsletter WHERE TOKEN = '$token'";
 $result  = mysql_query($sql);

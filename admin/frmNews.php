@@ -10,7 +10,7 @@ require 'system/system.php';
 <body>
 	<h2>Inscrever-se</h2>
 	<hr>
-        <?php RegisterNews()  ?>
+        <?php RegisterNews();  ?>
 	<form action="" method="post">
 		<label>Nome</label><br>
 		<input type="text" name="nome"><br>

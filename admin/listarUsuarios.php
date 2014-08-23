@@ -1,27 +1,23 @@
 <?php
 include '../includes/userAdm.inc';
- if(isset($_POST['exclui'])){ 
+if(isset($_POST['exclui'])){ 
        $excluir =  $_POST['excluir'];
-       if(!$excluir){
-       echo '<script language="Javascript">
-alert(Deu merda mesmo!);
-</script>'; 
-      }else{
        foreach ($excluir as $del)
        {
-       $query   = "DELETE FROM cliente WHERE ID_CLIENTE = '$del'";
+       $query   = "DELETE FROM cliente WHERE ID_CLIENTE = '$del' ";
        if(mysql_query($query)){
        echo '<script language="Javascript">
-alert(clientes selecionados foram excluidos com sucesso!);
+alert(Clientes selecionados foram excluidos com sucesso!);
 </script>';
        }else{
         echo '<script language="Javascript">
-alert(Deu merda mesmo!);
+alert(Nao foi possivel excluir selecionados!);
 </script>';
           } 
-       }  
-   }
+       
+  }
  }
+
 ?>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
@@ -128,7 +124,7 @@ $pagina =  trim(($_GET["pagina"]));
    $total = $row["num_registros"]; 
   
 ?>
-    <form action="" method="post" name="excluir">
+    <form action="" method="post" >
     <?php
 echo '<meta charset=UTF-8>';
 echo "<link href='../style/styleAdmin.css' rel='stylesheet' type='text/css' />";
@@ -195,26 +191,6 @@ $menos = $pagina - 1; $mais = $pagina + 1;   $pgs = ceil($total / $maximo);   if
 <div id="footer">
 
 </div>
-
-<script type="text/javascript">
-  // Load jQuery
-  google.load("jquery", "1.3");
-
-  google.setOnLoadCallback(function() {
-    // Seu código aqui
-  });
-</script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("a#show-panel").click(function() {
-      ../;
-        })
-        $("a#close-panel").click(function() {
-            $("#lightbox, #lightbox-panel").fadeOut(300);
-        })
-    })
-</script>
-
 </body>
 </html>
 

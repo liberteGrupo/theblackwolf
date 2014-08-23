@@ -2,14 +2,17 @@
 <html>
 <head>
     <title></title>
+    <script type="text/javascript">
+    </script>
 </head>
 <body>
 
 <div id="header">
 
 <div id="dv1">
-<form action=""  class="busca">
-    <input type="text" name="busca" value="o que deseja?"><input type="submit" name="enviar" class="botoes" />
+
+    <form action=""  class="busca" >
+    <input type="text" name="busca" value="o que deseja?"  id="busca"><input type="submit" name="enviar" class="botoes" />
 </form>
 <a id="show-panel" href=""></a>
 <div class="userAdm"><a href="carrinho.php"><img src="images/carrinho2.png" height="20px"></a> &nbsp;&nbsp;&nbsp;<a href="minhaConta.php"><img src="images/adm.png" height="20px"></a>&nbsp;&nbsp;&nbsp;<a href="logout.php"><img src="images/logout.png" height="20px"></a>
@@ -17,7 +20,7 @@
 <!-- lightbox-panel -->
 
 <div id="lightbox-panel">
-   <center> <h2>Faça seu Login </h2><p></center>
+    <center> <h2>Faça seu Login </h2><p></center>
     <hr noshade size="5" width="100%" />
     <div id="login-box-label"> </div>
     <form action="login.php" method="post">

@@ -49,12 +49,12 @@ include 'includes/menu.php';
  <div id="categoria_produtos">
    <div class="text_sua_conta"><b>Categorias</b></div><br> 
 <?php
-$id = intval(trim($_GET['id']));
+$id = intval(trim($_GET['categoria']));
  $selecionaCategs = mysql_query("SELECT * FROM categoria INNER JOIN subcategoria ON categoria.ID_CATEGORIA = '$id'");
  while($lnCateg = mysql_fetch_array($selecionaCategs)){
 ?>
        <div >
-         <a href="categoria.php?id=<?php echo $lnCateg['ID_SUBCATEGORIA']; ?> " >
+         <a href="categoria.php?categoria=<?php echo $lnCateg['ID_SUBCATEGORIA']; ?> " >
           <?php echo $lnCateg['NOME_SUBCATEGORIA']; ?>
          </a>
          <br>
@@ -74,15 +74,15 @@ Ordenar Por:
 <input type="submit" name="ordenar" class="botao"value="Ordenar" />
 </form>
 </div>
-<div class="ordena_produto_preco">
-<div class="text_sua_conta"><b>Genero</b></div>
-</div>
+
+
+
         <form method="post" action="carrinho_produtos.php">
         <table width="200" height="240" cellspacing="5" id="lista_produtos"><in>
        </div>
          <tr>   
    <?php
-   if(is_numeric($id_categoria = $_GET['id'])):
+   if(is_numeric($id_categoria = $_GET['categoria'])):
    $result = mysql_query("SELECT * FROM categoria INNER JOIN subcategoria ON categoria.ID_CATEGORIA = subcategoria.ID_CATEGORIA WHERE categoria.ID_CATEGORIA = subcategoria.ID_SUBCATEGORIA");
    if(mysql_num_rows($result) === '0' or !is_numeric($id_categoria)){
        echo 'error Page';

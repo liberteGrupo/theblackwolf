@@ -19,9 +19,9 @@ location.href="userError.php"
 </script>';
 }  else {
 $array = mysql_fetch_array($result);
-$senhaUsuario = $array['SENHA_CLIENTE'];
-$tipoUsuario = $array['TIPO_CLIENTE'];/*EU ALTEREI O CAMPO TIPO USUARIO*/
-$whirlpool = hash('whirlpool', $senha);
+$senhaUsuario  = $array['SENHA_CLIENTE'];
+$tipoUsuario   = $array['TIPO_CLIENTE'];/*EU ALTEREI O CAMPO TIPO USUARIO*/
+$whirlpool     = hash('whirlpool', $senha);
 if($whirlpool !== $senhaUsuario){
  echo '<script language="Javascript">
 location.href="userPass.php"
@@ -36,7 +36,7 @@ location.href="userPass.php"
     mysql_close();
     if($tipoUsuario === 'RES'){
     echo '<script language="Javascript">
-location.href="home.php"
+location.href="index.php"
 </script>';
       }elseif($tipoUsuario === 'ADM'){
           echo '<script language="Javascript">

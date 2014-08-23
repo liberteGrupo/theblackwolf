@@ -37,7 +37,6 @@ include 'conexao/conecta.inc';
 <div id="lembrar-senha"> <input type="checkbox" />
 Lembrar minha senha
 </div><br/>
-
 <input type="submit" value="Enviar" class="envio">&nbsp;&nbsp;
 <a id="cadast" href="frmCadastro.php" font color="black" >Cadastre-se</a></font> 
 </div>
@@ -91,15 +90,15 @@ include 'includes/menu.php';
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>Email:</td>
- <form action="login.php" method="post">
- <td> <input type="text" name="email"   /></td>
+ <form action="login.php" method="post" id="form_login">
+ <td class="email"> <input type="text" name="email" id="email"   /></td>
   </tr>
   <tr>
     <td height="28">&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>Senha:</td>
-    <td><input type="password" name="senha"  /></td>
+    <td class="senha"><input type="password" name="senha" id="senha"  /></td>
   </tr>
   <tr>
     <td height="85"></td>

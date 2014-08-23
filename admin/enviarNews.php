@@ -98,13 +98,16 @@ echo '<label >Bem vindo:'.$nomeUsuario.'</label>';
 		<label><a href="newsletter.php" title="Gerenciar Inscritos" >Gerenciar Inscritos</a></label>
 	</h2>
 	<hr>
+<?php
+require  '../includes/funcoesuteis.inc';
 
-            <form action="system/system.php" method="post">
+?>
+            <form action="" method="post">
 		<label>Assunto</label><br>
 		<input type="text" name="conteudo" id="contact"><br>
 		<label>Mensagem</label><br>
 		<textarea name="mensagem" cols="50" rows="15"></textarea><br><br>
-		<input type="submit" name="envia" value="Enviar News" class="botaoAdm">
+		<input type="submit" name="enviar" value="Enviar News" class="botaoAdm">
 	</form>
 </div>
 </div>

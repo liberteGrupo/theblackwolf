@@ -112,7 +112,7 @@ Lembrar minha senha
 <?php EnviaNewletter() ?>
 <div id="sobre">
 	 <img src="../images/newsletter.png" class="icons">&nbsp;<b>Dashboard</b><br>	
-                 <form action="inserirNews.php" method="get">
+                 <form action="enviarNews.php" method="get">
  <?php
 echo '<meta charset=UTF-8>';
 echo "<link href='../style/styleAdmin.css' rel='stylesheet' type='text/css' />";

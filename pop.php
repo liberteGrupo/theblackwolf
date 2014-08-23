@@ -58,7 +58,7 @@ $selecionaCategs = mysql_query("SELECT * FROM categoria INNER JOIN subcategoria 
   while($lnCateg = mysql_fetch_array($selecionaCategs)){
 ?>
        <div>
-         <a href="categoria.php?id=<?php echo $lnCateg['ID_CATEGORIA']; ?> " >
+         <a href="categoria.php?categoria=<?php echo $lnCateg['ID_CATEGORIA']; ?> " >
          <?php echo $lnCateg['NOME_SUBCATEGORIA']; ?>
          </a>
          <br>

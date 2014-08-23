@@ -88,16 +88,16 @@ Lembrar minha senha
     <img src="../images/home.png" class="icons">&nbsp;<b>Dashboard</b><br>
 <?php
 echo 'Bem vindo:'.$nomeUsuario;
-$sql ="SELECT * FROM cliente";
-$result = mysql_query($sql);
-$hoje = date('Y-m-d');
-$query ="SELECT * FROM metas WHERE DATA_META =  '$hoje'";
-$result2 = mysql_query($query);
-$numMeta = mysql_num_rows($result2);
+$sql         ="SELECT * FROM cliente";
+$result      = mysql_query($sql);
+$hoje        = date('Y/m/d');
+$query       ="SELECT * FROM metas WHERE DATA_META =  '$hoje' ";
+$result2     = mysql_query($query);
+$numMeta     = mysql_num_rows($result2);
 $numClientes = mysql_num_rows($result);
-$sql ="SELECT * FROM itens_pedidos";
-$result = mysql_query($sql);
-$numPedidos = mysql_num_rows($result);
+$sql         ="SELECT * FROM itens_pedidos";
+$result      = mysql_query($sql);
+$numPedidos  = mysql_num_rows($result);
 ?>
 <div id="estatisticas">
 <h2>Estatisticas</h2>
@@ -111,7 +111,7 @@ $result = mysql_query($sql);
 if(mysql_num_rows($result)=== 0){
  echo 'Nenhum Pedido Foi realizado hoje!.<br>';
 }else{
-echo '<table class="list_users" width="1000px" "';
+echo '<table class="list_users" width="1000px" ';
 echo '<tr>';
 echo '<td> <label>Código do Pedido</label></td>';
 echo '<td> Data Pedido </td>';
@@ -146,11 +146,11 @@ while($pedido = mysql_fetch_array($result)){
     $totalCompras += $pedido['VALOR_PEDIDO'];
 }
 echo '<caption><b><label>Ultimos  pedidos Relizados até o momento:</label></b></caption>';
-echo "<div class='totalCompras'><h2>Total em compras efetuadados:</h2></label><b class='numero_pedido_texto' >R$".$totalCompras."</b></div>";
+echo "<div class='totalCompras'>Total em compras efetuadados:</label><b class='texto_error' >R$".$totalCompras."</b></div>";
 }
 ?>
         
-        <br><br><div  class='cadastraMeta' >
+        <div  class='cadastraMeta' >
        
          <?php 
        if($numMeta === 0 ){
@@ -160,10 +160,10 @@ echo "Nenhuma meta cadastrada para hoje!<br><br>";
 <?php 
        }else
        {
-      $meta = mysql_fetch_array($result2);
-      $hoje = date('Y-m-d');
-      $sql ="SELECT * FROM itens_pedidos RIGHT OUTER JOIN pedido ON pedido.ID_PEDIDO =  itens_pedidos.ID_PEDIDO WHERE DATA_PEDIDO >= '$hoje' ";
-      $pedido = mysql_fetch_array($result);
+      $meta          = mysql_fetch_array($result2);
+      $hoje          = date('Y-m-d');
+      $sql           ="SELECT * FROM itens_pedidos RIGHT OUTER JOIN pedido ON pedido.ID_PEDIDO =  itens_pedidos.ID_PEDIDO WHERE DATA_PEDIDO >= '$hoje' ";
+      $pedido        = mysql_fetch_array($result);
       $totalCompras += $pedido['VALOR_PEDIDO'];
       if($meta['VALOR_META'] > $totalCompras){
       echo "<label class='texto_error'>Valor da Meta Não atingida ainda!</label>";
@@ -171,11 +171,9 @@ echo "Nenhuma meta cadastrada para hoje!<br><br>";
       }else
       {
        echo "META ATINGIDA!<br>";
-       echo " Valor da meta:<label class='texto_error'>".$meta['VALOR_META']."</label>";
-
+       echo " Valor da meta:".$meta['VALOR_META']."</label>";
       }
        }
-
          ?>
          </div></a>
    

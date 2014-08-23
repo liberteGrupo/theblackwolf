@@ -78,7 +78,7 @@ Lembrar minha senha
     </ul>
 </nav>
 </div>
-<section>
+<section><br><br>
 <form action="inserirSubCategoria.php" method="post" >
         <h1>Cadastro de Subcategoria</h1>         
      <br /><br />

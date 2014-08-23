@@ -42,7 +42,10 @@ else{
         $_SESSION['nomeUsuario']  = $array['NOME_ADMIN'];
         $_SESSION['cod_usuario']  = $array['ID_ADMIN'];
 	// Redireciona o visitante
-	header("Location:../index.php"); 
+	echo '<script language="Javascript">
+	alert("Login Invalido!");
+location.href="index.php"
+</script>';
         exit;
 }
 }

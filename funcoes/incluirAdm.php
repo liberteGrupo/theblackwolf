@@ -7,7 +7,7 @@ echo "preencha todos os campos!";
 $nome         =  strip_tags(trim($_POST['nome']));
 $email        =  strip_tags(trim($_POST['email']));
 $senha        =  strip_tags(trim($_POST['senha']));
-$whirlpool    =  md5($senha); 
+$whirlpool    =  hash('whirlpool', $senha); 
 $nivel        =  '3';
 $ativo        =  '0'; 
 $tipoUser     =  'ADM';

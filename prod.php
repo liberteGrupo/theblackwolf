@@ -90,7 +90,7 @@ echo "<p>Resultados ".min($total, ($inicio + 1))." - ".min($total, ($inicio + $_
 
             </tr>    
  <?php
-        $i = 1;
+        $i = 0;
     }
     $i++;
    }
@@ -109,4 +109,4 @@ echo '<div class="caixa_busca"><a href="?consulta='.$_GET['consulta'].'&pagina='
 }
 
 ?>
-
+  </form>

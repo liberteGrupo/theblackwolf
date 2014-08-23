@@ -1,6 +1,6 @@
 <?php
-require_once 'includes/funcoesuteis.inc';
-   include_once 'conexao/conecta.inc';
+require_once '../includes/funcoesuteis.inc';
+include_once '../conexao/conecta.inc';
  if(isset($_POST['enviar'])){
  $email   = $_POST['email'];
  $dados   = verificaEmail($email);
@@ -16,7 +16,7 @@ require_once 'includes/funcoesuteis.inc';
 <!doctype html>
 <html class="label" xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="../style.css" rel="stylesheet" type="text/css" />
+<link href="../styles/style.css" rel="stylesheet" type="text/css" />
 <link rel="shortcut icon" href="images/favicon.ico"/>
 <title>The Black Wolf</title>
 </head>
@@ -73,7 +73,7 @@ Lembrar minha senha
 
 <nav id="menu">
 <?php 
-include 'includes/menu.php';
+include '../includes/menu.php';
 ?>
 </nav>
 <section class="autentica_usuario">

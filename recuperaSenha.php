@@ -4,7 +4,6 @@ require_once 'includes/funcoesuteis.inc';
  $email   = $_POST['email'];
  $dados   = verificaEmail($email);
     if($dados){
-        print_r($dados);
    enviaEmail($email,$dados->ID_CLIENTE);
    echo 'deu certo';
      }else{
@@ -116,28 +115,12 @@ CAMISETAS<br />
  <img src="user/images/logo.png" width="160" height="170"/><br/>
  <font color="#FFFFFF"> The Black wolf 2014
  </div></font>
-
-
-
 <div id="redes">
 REDES SOCIAIS<br />
 <a href="#"><img src="user/images/insta.jpg" width="45" height="35"     /></a>
 <a href="#"><img src="user/images/face.jpg" width="40" height="34"    /></a>
 <a href="#"><img src="user/images/twitter.jpg" width="40" height="35"    /></a>
 </div>
-
-
-
-
-
-<script type="text/javascript">
-	// Load jQuery
-	google.load("jquery", "1.3");
-
-	google.setOnLoadCallback(function() {
-		// Seu código aqui
-	});
-</script>
 <script type="text/javascript">
     $(document).ready(function() {
         $("a#show-panel").click(function() {

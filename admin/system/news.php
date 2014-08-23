@@ -1,7 +1,6 @@
 <?php
 
 include '../../conexao/conecta.inc';
-
 $nome  = htmlspecialchars(strip_tags($_POST['nome']));
 $email = htmlspecialchars(strip_tags($_POST['email']));
 $token = md5(uniqid().time()); 
@@ -27,12 +26,12 @@ $token = md5(uniqid().time());
 		echo      '<meta charset="UTF-8">';
 		$urlBase  = 'htpp://theblackwolf.hol.es/';
 		$link     = $urlBase.'confirm.php?token='.$token;
-                $link2     = $urlBase.'cancel.php?token='.$token;
-                $msg      = "<strong>Nome:</strong> $nome <br>";
+        $link2    = $urlBase.'cancel.php?token='.$token;
+        $msg      = "<strong>Nome:</strong> $nome <br>";
 		$msg     .= "<strong>E-mail:</strong> $email <br>";
 		$msg     .= "<strong>Mensagem:</strong> Você assinou a newsletter do site Theblackwolf e Voce receberá notificacoes quanto a promocões e ofertas  <br>";
-                $msg     .= "Para confirmar seu cadastro clique aqui ".$link." <br>";
-                $msg     .= "<strong>Importante:</strong> se não quiser que enviemos notificações clique aqui ".$link2." <br></strong> - Mensagem enviada em <strong>".date('d:m:Y H:i')."</strong>";
+        $msg     .= "Para confirmar seu cadastro clique aqui ".$link." <br>";
+        $msg     .= "<strong>Importante:</strong> se não quiser que enviemos notificações clique aqui ".$link2." <br></strong> - Mensagem enviada em <strong>".date('d:m:Y H:i')."</strong>";
 		$recipient= $email;
 		$subject  = "Theblackwolf";
 		$header   = "MIME-Version: 1.0\r\n";

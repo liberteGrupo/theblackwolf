@@ -1,5 +1,27 @@
 <?php
 include '../includes/userAdm.inc';
+if(isset($_POST['exclui'])){ 
+       $excluir =  $_POST['excluir'];
+       if(!$excluir){
+       echo '<script language="Javascript">
+alert(Deu merda mesmo!);
+</script>'; 
+      }else{
+       foreach ($excluir as $del)
+       {
+       $query   = "DELETE FROM cliente WHERE ID_CLIENTE = '$del'";
+       if(mysql_query($query)){
+       echo '<script language="Javascript">
+alert(clientes selecionados foram excluidos com sucesso!);
+</script>';
+       }else{
+        echo '<script language="Javascript">
+alert(Deu merda mesmo!);
+</script>';
+          } 
+       }  
+   }
+ }
 ?>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
@@ -95,8 +117,9 @@ Lembrar minha senha
 $sql ="SELECT * FROM categoria INNER JOIN subcategoria ON categoria.ID_CATEGORIA = subcategoria.ID_CATEGORIA";
 $result = mysql_query($sql);
 echo '<table  class="list_users" width="600px"   ';
-echo '<caption><label><h3><b>Categorias</h3></b></label></caption>';
+echo '<caption><label><h3><b>Categorias e Subcategorias</h3></b></label></caption>';
 echo '<tr>';
+echo '<th></th>';
 echo '<th>Cód categoria</th>';
 echo '<th >Categoria</th>';
 echo '<th>Subcategoria</th>';
@@ -104,6 +127,7 @@ echo '<th colspan=2>Ação</th>';
 echo '</tr>';
 while($categoria = mysql_fetch_array($result)){
     echo '<tr>';
+    echo '<td><input type="checkbox" name="excluir[]" value='.$categoria['ID_CATEGORIA'].' /></td>'; 
     echo '<td>'.$categoria['ID_CATEGORIA']. '</td>';  
     echo '<td>'.$categoria['NOME_CATEGORIA']. '</td>'; 
     echo '<td>'.$categoria['NOME_SUBCATEGORIA']. '</td>';
@@ -115,13 +139,16 @@ while($categoria = mysql_fetch_array($result)){
 echo '</table>';
        
        ?>
-
+<br>
+<br>
   </div>
 </div>
 
 
 
+<div id="footer">
 
+</div>
 </body>
 </html>
 

@@ -1,5 +1,6 @@
 <?php
 echo '<meta charset=utf-8>';
+//pra voce conecta em sua casa vc precis
 $hostName ='localhost';
 $userName = 'root';
 $passHost = 'theblackwolf';

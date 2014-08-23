@@ -3,7 +3,69 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="styles/style.css" rel="stylesheet" type="text/css" />
 <link rel="shortcut icon" href="images/favicon.ico"/>
-<script type="text/javascript" src="slide.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script> 
+<script type="text/javascript">
+			$(document).ready(function(){
+				$("a[rel=modal]").click( function(ev){
+					ev.preventDefault();
+
+					var id = $(this).attr("href");
+
+					var alturaTela = $(document).height();
+					var larguraTela = $(window).width();
+	
+					//colocando o fundo preto
+					$('#mascara').css({'width':larguraTela,'height':alturaTela});
+					$('#mascara').fadeIn(1000);	
+					$('#mascara').fadeTo("slow",0.8);
+
+					var left = ($(window).width() /2) - ( $(id).width() / 2 );
+					var top = ($(window).height() / 2) - ( $(id).height() / 2 );
+					
+					$(id).css({'top':top,'left':left});
+					$(id).show();	
+ 				});
+
+ 				$("#mascara").click( function(){
+ 					$(this).hide();
+ 					$(".window").hide();
+ 				});
+
+ 				$('.fechar').click(function(ev){
+ 					ev.preventDefault();
+ 					$("#mascara").hide();
+ 					$(".window").hide();
+ 				});
+			});
+		</script>
+
+		<style type="text/css">
+
+		.window{
+			display:none;
+			width:760px;
+			height:300px;
+			position:absolute;
+			left:0;
+			top:0;
+			background:#FFF;
+			z-index:9900;
+			padding:10px;
+			border-radius:10px;
+		}
+
+		#mascara{
+			position:absolute;
+  			left:0;
+  			top:0;
+  			z-index:9000;
+  			background-color:#000;
+  			display:none;
+		}
+
+		.fechar{display:block; text-align:right;}
+
+		</style>
 
 
 <title>The Black Wolf</title>
@@ -78,7 +140,7 @@ echo 'Olá '.$nomeUsuario.'!<br>';
                  </p>
                  </div> 
      <div class="conteudo_informacoes_2_pedido">
-              <b>Informações do pedido </b><br><br>
+              <b>Informações do ultimo pedido: </b><br><br>
           <div id="box_pedido">
               <div align="center"><b >Nº Pedido</b><br></div>  
               <div align="center"> <b class="numero_pedido_texto"><?php echo $usuarios['ID_PEDIDO'];?></b></div>
@@ -86,13 +148,14 @@ echo 'Olá '.$nomeUsuario.'!<br>';
           <div class="dados_pedido">
           <?php
           if($usuarios['PAGAMENTO_PEDIDO'] === '1' ){
-               echo '<b>Situacao</b>:<label>Pago</label><br>';
+               echo '<b>Situacao</b>:Pago<br>';
           }else{
           echo '<b>Situacao</b>:Pendente<br>';
           }
           echo '<b>Data do pedido</b> '.substr($usuarios['DATA_PEDIDO'],0,10).'<br>';
           echo '<b>Valor</b>: R$'.number_format($usuarios['VALOR_PEDIDO'],'2','.',',').'<br>';
-          
+          echo '<b>Forma de pagamento:</b>Pendente<br>';
+          echo '<a href="#janela2" rel="modal">Acompanhe seu pedido:</a>';
           ?>
           </div>
           <br>
@@ -105,47 +168,50 @@ echo '<b>Email:</b>'.$email.'<br>';
 
 echo '<br>';
 echo '<br>';
-   $endereco = mysql_query("SELECT * FROM cliente INNER JOIN endereco ON cliente.ID_ENDERECO  ='$codigo_usuario'");
-   if(mysql_num_rows($endereco)=== 0)
-   {
-   }else{
+   $endereco = mysql_query("SELECT * FROM cliente RIGHT OUTER JOIN endereco ON endereco.ID_CLIENTE = '$cod_usuario ' WHERE cliente.ID_CLIENTE  = endereco.ID_ENDERECO");
 ?>
-   
-     
+     <div class="window" id="janela2">
+         <a href="#" class="fechar">X Fechar</a>
 <?php 
-
-$sql ="SELECT * FROM cliente RIGHT OUTER JOIN pedido ON cliente.ID_CLIENTE = '$codigo_usuario' WHERE cliente.ID_CLIENTE = pedido.ID_CLIENTE  ORDER BY ID_PEDIDO DESC LIMIT 0,6";
+$sql    = "SELECT * FROM cliente RIGHT OUTER JOIN pedido ON cliente.ID_CLIENTE =  '$cod_usuario' WHERE cliente.ID_CLIENTE = pedido.ID_CLIENTE  ORDER BY ID_PEDIDO DESC LIMIT 0,6";
 $result = mysql_query($sql);
 if(mysql_num_rows($result)=== 0){
-    echo 'Nenhum Pedido Foi realizado!';
-}
-echo '<table  width="750px" class="list_users"';
-echo '<caption><label><h3>Pedidos efetuados</label></h3></caption>';
+   
+}else{
+    
+echo '<table  width="760px" class="list_users" ';
+echo '<caption><label><h3>Andamento do pedido</label></h3></caption>';
 echo '<tr>';
 echo '<td>Código do Pedido</td>';
 echo '<td>Data Pedido </td>';
 echo '<td>Valor Pedido</td>';
 echo '<td>Pagamento Pedido</td>';
+echo '<td>Entrega pedido</td>';
 echo '</tr>';
 while($pedido = mysql_fetch_array($result)){
     echo '<tr>';
     echo '<td >'.$pedido['ID_PEDIDO'].'</td>';
-    $data = explode('/', $pedido['DATA_PEDIDO']);
-    echo '<td>'.substr($pedido['DATA_PEDIDO'],0,10).'</td>';
+    date_default_timezone_set("BRAZIL/EAST");
+    $data = new DateTime($pedido['DATA_PEDIDO']);
+    echo '<td>'.$data->format('l, jS F, Y').'</td>';
     echo '<td>'.'R$'.$pedido['VALOR_PEDIDO'].'</td>';
   if($pedido['PAGAMENTO_PEDIDO'] === '1'){
         echo '<td><img class="icons" src="images/yes.png"></td>';     
     }
     if($pedido['PAGAMENTO_PEDIDO'] === '0'){
-          echo '<td><img class="icons" src="images/not.png"></td>';   
+        echo '<td><img class="icons" src="images/not.png"></td>';   
     }
+    echo '<td><img class="icons" src="images/yes.fw.png"></td>'; 
     echo '</tr>';
     
 }
 echo '</table>';
    }
+   
    ?>
       </div>
+            <div id="mascara"></div> 
+              </div>
   </div> </div>   
 <div id="footer">
 <div id="mapa1">/

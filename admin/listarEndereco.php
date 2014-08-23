@@ -7,6 +7,88 @@ include '../includes/userAdm.inc';
 <link href="../styles/style.css" rel="stylesheet" type="text/css" />
 <link rel="shortcut icon" href="../images/favicon.ico"/>
 <script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	//PESQUISA INSTANTANEA PELO INPUT
+	$("#pesquisa").keyup(function(){
+		//Recupera oque está sendo digitado no input de pesquisa
+		var pesquisa 	= $(this).val();
+		//Recupera oque foi selecionado
+		var campo 		= $("#campo").val();
+		//Verifica se foi digitado algo
+		if(pesquisa != ''){
+			//Cria um objeto chamado de 'dados' e guarda na propriedade 'palavra' a pesquisa e na propriedade campo o campo a ser pesquisado
+			var dados = {
+				palavra : pesquisa,
+				campo 	: campo
+			}
+			//Envia por AJAX pelo metodo post, a pequisa para o arquivo 'busca.php'
+			//O paremetro 'retorna' é responsável por recuperar oque vem do arquivo 'busca.php'
+			$.post('busca.php', dados, function(retorna){
+				//Mostra dentro da ul com a class 'resultados' oque foi retornado
+				$(".resultados").html(retorna);
+			});
+		}else{
+			$(".resultados").html('');
+		}
+	});
+	//PESQUISA INSTANTANEA PELO SELECT
+	$("#campo").change(function(){
+		//Recupera oque está sendo digitado no input de pesquisa
+		var pesquisa = $("#pesquisa").val();
+
+		//Recupera oque foi selecionado
+		var campo 		= $(this).val();
+
+		//Verifica se foi digitado algo
+		if(pesquisa != ''){
+			//Cria um objeto chamado de 'dados' e guarda na propriedade 'palavra' a pesquisa e na propriedade campo o campo a ser pesquisado
+			var dados = {
+				palavra : pesquisa,
+				campo 	: campo
+			}
+			
+			//Envia por AJAX pelo metodo post, a pequisa para o arquivo 'busca.php'
+			//O paremetro 'retorna' é responsável por recuperar oque vem do arquivo 'busca.php'
+			$.post('busca.php', dados, function(retorna){
+				//Mostra dentro da ul com a class 'resultados' oque foi retornado
+				$(".resultados").html(retorna);
+			});
+		}else{
+			$(".resultados").html('');
+		}
+	});
+	//PESQUISA DE FORMULÀRIO
+	$("#form-pesquisa").submit(function(e){
+		//Cancela a ação padrao o formulário, impedindo que ele atualize a página
+		e.preventDefault();
+
+		//Recupera oque está sendo digitado no input de pesquisa
+		var pesquisa = $("#pesquisa").val();
+
+		//Recupera oque foi selecionado
+		var campo = $("#campo").val();
+		
+		//Se não for digitado nada, então ele mostra um alert
+		if(pesquisa == ''){
+			alert('Informe sua Pequisa!');
+		}else{
+			//Cria um objeto chamado de 'dados' e guarda na propriedade 'palavra' a pesquisa
+			//Cria um objeto chamado de 'dados' e guarda na propriedade 'palavra' a pesquisa e na propriedade campo o campo a ser pesquisado
+			var dados = {
+				palavra : pesquisa,
+				campo 	: campo
+			}
+			
+			//Envia por AJAX pelo metodo post, a pequisa para o arquivo 'busca.php'
+			//O paremetro 'retorna' é responsável por recuperar oque vem do arquivo 'busca.php'
+			$.post('busca.php', dados, function(retorna){
+				$(".resultados").html(retorna);
+			});
+		}
+	});
+});
+</script>
 <title>The Black Wolf</title>
 </head>
 
@@ -87,9 +169,10 @@ Lembrar minha senha
 
 
 <section>
+    <div class="resultado">
     <div class="faixa_adm"><img src="../images/casa.png" class="icons"></div>
  <h2>Busca de Enderecos</h2>
-<form method="GET" action="busca.php" id="pesquisa">
+<form method="GET" action="" id="pesquisa">
 <label for="consulta">Buscar:</label>
 <input type="text" id="consulta" name="consulta" maxlength="255" />
 <input type="submit" value="OK"  class="botaoAdm"/>
@@ -125,6 +208,7 @@ while($usuarios = mysql_fetch_array($result)){
 echo '</table>';
 
 ?>
+</div>
 </div>
 </div>
 </section>

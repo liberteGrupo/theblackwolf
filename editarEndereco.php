@@ -13,8 +13,7 @@ if(isset($_POST['acao']) && $_POST['acao'] =='update' ):
               $recuperBairro =  $_POST['bairro'];
               $recuperCep =  $_POST['cep'];
               $recuperNumero = $_POST['numero'];
-              $codigo_endereco = mysql_real_escape_string($_GET['codigo']); 
-           
+              $codigo_endereco = mysql_real_escape_string($_GET['codigo']);     
               $update = mysql_query("UPDATE endereco SET CIDADE = '$recuperCidade',BAIRRO= '$recuperBairro',"
                       . "ENDERECO = '$recuperEndereco',NUMERO='$recuperNumero',CEP = '$recuperCep' "
                       . "WHERE ID_ENDERECO ='$codigo_endereco'");
@@ -166,9 +165,6 @@ exit();
     <td><input type="text" name="numero" value="<?php echo $numero; ?>" required ></td>
   </tr>
   <tr>
-    <td height="23" class="text_endereco" scope="row">Cpf:</td>
-    <td><input type="text" name="cep"  value="<?php echo $cep; ?>" required >
-    </td>
            </table> 
              <input name="acao" type="hidden" value="update" ><br>  
              <input  type="submit"  value="Atualizar" class="botao" >&nbsp;&nbsp;&nbsp;&nbsp; <a href="minhaConta.php"><input type="button" value="voltar" class="botao" /></a>

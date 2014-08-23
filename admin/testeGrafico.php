@@ -20,11 +20,9 @@ $dados = mysql_fetch_array($result);
           ['12', '21']
           ['12', '21']
         ]);
-
         var options = {
           title: 'My Daily Activities'
         };
-
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);
       }

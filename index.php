@@ -11,6 +11,7 @@
 echo '<meta charset=utf-8>';
 require_once 'conexao/conecta.inc';
 include 'includes/funcoesuteis.inc';
+include 'admin/system/system.php';
 session_start();
 $email       = isset($_SESSION['email'])?$_SESSION['email']:null;
 $senha       = isset($_SESSION['senha'])?$_SESSION['senha']:null;
@@ -71,12 +72,16 @@ include 'includes/menu.php';
 
   <p>&nbsp;</p>
 </center>
+ <?php RegisterNews()  ?>
 <div id="newsletter">
-<center> <label><font size="4" >Newsletter</label><br/></font></center>
-s
+<form action="admin/system/news.php" method="post">
+ <label>Newsletter</label><br/>
 Cadastre seu email para receber informações de produtos, novidades e promoções:<br/><br/>
-	<input type="text" name="email" value=""cols="100" rows="8"/> <input type="submit" value="Enviar" class="boton">
+ Nome:<input type="text" name="nome" id="nome" /><br>
 
+ Email:<input type="text" name="email" id="email" /> <br><br><input type="submit" value="Enviar"  name="enviar" class="boton">
+  </center> 
+  </form>
 </div>
 </div>
 </div>

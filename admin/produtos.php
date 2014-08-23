@@ -129,28 +129,7 @@ echo '<th colspan=2>Ação</th>';
 </section>
 
 
-<div id="footer">
 
-
-
-<script type="text/javascript">
-	// Load jQuery
-	google.load("jquery", "1.3");
-
-	google.setOnLoadCallback(function() {
-		// Seu código aqui
-	});
-</script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("a#show-panel").click(function() {
-      ../;
-        })
-        $("a#close-panel").click(function() {
-            $("#lightbox, #lightbox-panel").fadeOut(300);
-        })
-    })
-</script>
 
 </body>
 </html>

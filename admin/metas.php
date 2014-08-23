@@ -2,14 +2,9 @@
 include '../includes/userAdm.inc';
 if(isset($_POST['exclui'])){ 
        $excluir =  $_POST['excluir'];
-       if(!$excluir){
-       echo '<script language="Javascript">
-alert(Não foi possivel excluir log!);
-</script>'; 
-      }else{
        foreach ($excluir as $del)
        {
-       $query   = "DELETE FROM logs WHERE ID_LOG = '$del'";
+       $query   = "DELETE FROM metas WHERE ID_META = '$del'";
        if(mysql_query($query)){
        echo '<script language="Javascript">
 alert(Log selecionados foram excluidos com sucesso!);
@@ -20,7 +15,7 @@ alert(Deu merda mesmo!);
 </script>';
           } 
        }  
-   }
+   
  }
 ?>
 <!doctype html>
@@ -49,10 +44,10 @@ alert(Deu merda mesmo!);
     <hr noshade size="5" width="100%" />
     <div id="login-box-label"> </div>
 <div class="input-div" id="input-usuario">Email: &nbsp;
-	<input type="text" value=""/>
+  <input type="text" value=""/>
 </div>
 <div class="input-div" id="input-senha">Senha:&nbsp;
-	<input type="password" value="Senha" />
+  <input type="password" value="Senha" />
 <br>
 </div>
 
@@ -115,27 +110,10 @@ Lembrar minha senha
   
 // Configuração do script
 // ========================
-$_BS['PorPagina'] =20; // Número de registros por página
-// Conexão com o MySQL
-// ========================
-$_BS['MySQL']['servidor'] = 'localhost';
-$_BS['MySQL']['usuario'] = 'root';
-$_BS['MySQL']['senha'] = 'theblackwolf';
-$_BS['MySQL']['banco'] = 'theblackwolf';
-mysql_connect($_BS['MySQL']['servidor'], $_BS['MySQL']['usuario'], $_BS['MySQL']['senha']);
-mysql_select_db($_BS['MySQL']['banco']);
-// ====(Fim da conexão)====
-
-// Verifica se foi feita alguma busca
-// Caso contrario, redireciona o visitante
-// Se houve busca, continue o script:
-// Usa a função mysql_real_escape_string() para evitar erros no MySQL
-// ============================================
-// Monta a consulta MySQL para saber quantos registros serão encontrados
+$_BS['PorPagina'] =20; 
+include '../conexao/conecta.inc';
 $sql = "SELECT COUNT(*) AS total FROM logs";
-// Executa a consulta
 $query    = mysql_query($sql);
-// Salva o valor da coluna 'total', do primeiro registro encontrado pela consulta
 $total    = mysql_result($query, 0, 'total');
 $paginas  =(($total % $_BS['PorPagina']) > 0) ? (int)($total / $_BS['PorPagina']) + 1 : ($total / $_BS['PorPagina']);
 if(isset($_GET['pagina']) and $_GET['pagina'] === ''){
@@ -149,39 +127,42 @@ $pagina = 1;
 $pagina = max(min($paginas, $pagina), 1);
 $inicio = ($pagina - 1) * $_BS['PorPagina'];
 // Monta outra consulta MySQL, agora a que fará a busca com paginação
-$sql = "SELECT * FROM logs  INNER JOIN cliente ON logs.ID_CLIENTE = cliente.ID_CLIENTE ORDER BY ID_LOG DESC LIMIT ".$inicio.", ".$_BS['PorPagina'];
+$sql = "SELECT * FROM METAS ORDER BY ID_META DESC LIMIT ".$inicio.", ".$_BS['PorPagina'];
 // Executa a consulta
 $query = mysql_query($sql);
 // Começa a exibição dos resultados
 echo "<p>Resultados ".min($total, ($inicio + 1))." - ".min($total, ($inicio + $_BS['PorPagina']))." de ".$total." resultados </p>";
 // <p>Resultados 1 - 20 de 138 resultados encontrados para 'minha busca'</p>
-echo '<table  class="list_users"  width="1000px" ';
-echo '<caption><h2>Log Clientes</h2></b></caption>';
+echo '<table  class="list_users"  width="600px" ';
+echo '<caption><h2>Metas Cadastradas</h2></b></caption>';
 echo '<tr>';
 echo '<th></th>';
-echo '<th>Cód log</th>';
-echo '<th>Nome cliente </th>';
-echo '<th>Data </th>';
-echo '<th><img src="../images/ip_adress.png" class="icons" width="20px"/> </th>';
-echo '<th>Mensagem</th>';
+echo '<th>Cód meta</th>';
+echo '<th>Valor meta </th>';
+echo '<th>Atinginda ?</th>';
+echo '<th>Data Cadastro </th>';
 echo '<th >Ação</th>';
 echo '</tr>';
 while($log = mysql_fetch_array($query)){
     echo '<tr>';
-    echo '<td><input type="checkbox" name="excluir[]" value='.$log['ID_LOG'].' /></td>';
-    echo '<td>'.$log['ID_LOG'].'</td>';  
-    echo '<td>'.$log['NOME_CLIENTE'].'</td>';
-    echo '<td>'.$log['DATA_LOGIN'].'</td>';
-    echo '<td>'.$log['IP'].'</td>';
-    echo '<td>'.$log['MENSAGEM'].'</td>';
-    echo '<td> <a href=excluirLog.php?codigo='.$log['ID_LOG'].'> <img src="../images/delete6.png" class="icons" />  </a></td>';
+    echo '<td><input type="checkbox" name="excluir[]" value='.$log['ID_META'].' /></td>';
+    echo '<td>'.$log['ID_META'].'</td>';  
+    echo '<td>R$'.$log['VALOR_META'].'</td>';
+    $meta = $log['META_ATINGIDA'];
+     if($meta === '0'){
+        echo '<td><img width="20px" src="../images/not.png"></td>';     
+    }elseif($meta === '1'){
+        echo '<td><img width="20px" src="../images/yes.png"></td>';   
+    };
+    echo '<td>'.$log['DATA_META'].'</td>';
+    echo '<td> <a href=excluirMeta.php?codigo='.$log['ID_META'].'> <img src="../images/delete6.png" class="icons" />  </a></td>';
     echo '</tr>';
 }
 echo '</table><br>';
 // ============================================
 // Começa a exibição dos paginadores
 if ($total > 0) {
-for($n = 1; $n <= $paginas; $n++) {
+for($n = 1; $n <= $paginas; $n++){
 echo '<div class="caixa_busca"><a href="?pagina='.$n.'">'.$n.'</div></a>&nbsp;&nbsp;';
 }
 }
@@ -197,54 +178,6 @@ echo '<div class="caixa_busca"><a href="?pagina='.$n.'">'.$n.'</div></a>&nbsp;&n
 
 <div id="footer">
 
-<div id="mapa1">
-  CDS  <br />  
-  	<a href="pop.html">Pop</a> <br />
-    <a href="#">Rock</a><br />
-    <a href="#">Punk</a><br />
-    <a href="#">Metal</a><br />
-    <a href="#">Eletronica</a><br />
 </div>
-
-<div id="mapa2">
-CAMISETAS<br />
-<a href="#">Feminino</a><br />
-<a href="#">Masculino</a>
- </div>
-
-<div id="pagamento">
- FORMAS DE PAGAMENTO <br />
-<img src="../images/pagamento.jpg" width="142" height="131"/>
-</div><div id="rodapelogo">
- <img src="../images/logo.png" width="160" height="170"/><br/>
- <font color="#FFFFFF"> The Black wolf 2014
- </div></font>
-
-<div id="redes">
-REDES SOCIAIS<br />
-<a href="#"><img src="../images/insta.jpg"/></a>
-<a href="#"><img src="../images/face.jpg" /></a>
-<a href="#"><img src="../images/twitter.jpg" /></a>
-</div>
-
-<script type="text/javascript">
-	// Load jQuery
-	google.load("jquery", "1.3");
-
-	google.setOnLoadCallback(function() {
-		// Seu código aqui
-	});
-</script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("a#show-panel").click(function() {
-      ../;
-        })
-        $("a#close-panel").click(function() {
-            $("#lightbox, #lightbox-panel").fadeOut(300);
-        })
-    })
-</script>
-
 </body>
 </html>

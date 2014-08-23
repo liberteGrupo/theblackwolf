@@ -8,7 +8,7 @@ if($_POST['meta'] === '' ){
 </script>';
 }else{
 $atingida = '0';
-$data = date('Y/m/d');
+$data = date('Y:m:d H:i:s');
 $sql = ("INSERT INTO metas (VALOR_META,META_ATINGIDA,DATA_META)");
 $sql.= " VALUES ('$meta','$atingida','$data')";
 if(mysql_query($sql)){

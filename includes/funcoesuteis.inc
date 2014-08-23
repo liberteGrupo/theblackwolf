@@ -112,7 +112,7 @@ function  validaAdm($link)
    }
      
  function enviaEmail($email,$id){
-	 require_once 'admin/system/phpmailer/class.phpmailer.php';
+	 require '../admin/system/phpmailer/class.phpmailer.php';
 	 $email = new PHPMailer();
 	 //dados 
          $host              = 'smtp.gmail.com';
@@ -139,20 +139,13 @@ function  validaAdm($link)
          $email->Body       = 'Você pediu para recuperar a senha do site theblackwolf.hol.es';
          $email->Body      .= 'Clique no link a abaixo para redefi-la';
          $email->Body      .= '<a href="htttp://localhost/theblackwolf/redefine.php?id='.$id.'">Redefinir Senha</a>';
-         
-         if($email->Send()){
-             return true;
-         }else
-         {
-             return false;
-         }
-         
+         $email->Send();
 }    
-     
+ 
 function verificaEmail($email){
-    include_once 'conexao/conecta.inc';
+    include_once '../conexao/conecta.inc';
     $verifica    = mysql_query("SELECT * FROM cliente WHERE EMAIL_CLIENTE =  '$email'");
-     return (mysql_num_rows($verifica) == 1) ? mysql_fetch_object($verifica): false;
+    return (mysql_num_rows($verifica) == 1) ? mysql_fetch_object($verifica): false;
 }
 function cadastraCliente(){
     if(isset($_POST['cadastrar'])){
@@ -173,8 +166,8 @@ $tipoCliente = 'RES';
 $query = "INSERT INTO endereco (CIDADE,ESTADO,BAIRRO,ENDERECO,NUMERO,CEP,TELEFONE,CELULAR) VALUES ('$cidade','$estado','$bairro','$endereco','$numero','$cep','$tel','$cel')";
 if(mysql_query($query))
 {
-$id = mysql_insert_id();
-$consulta =mysql_query("INSERT INTO cliente (ID_ENDERECO,NOME_CLIENTE,EMAIL_CLIENTE,SENHA_CLIENTE,TIPO_CLIENTE,CPF_CLIENTE)VALUES ('$id','$nome','$email','$whirlpool','$tipoCliente','$cpf')");
+$id       = mysql_insert_id();
+$consulta = mysql_query("INSERT INTO cliente (ID_ENDERECO,NOME_CLIENTE,EMAIL_CLIENTE,SENHA_CLIENTE,TIPO_CLIENTE,CPF_CLIENTE)VALUES ('$id','$nome','$email','$whirlpool','$tipoCliente','$cpf')");
 }
 if($consulta){
   

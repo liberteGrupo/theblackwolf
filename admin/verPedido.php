@@ -74,77 +74,8 @@ Lembrar minha senha
     </ul>
 </nav>
 <section>	
-<img src="../images/pedidoss.png" class="icons">&nbsp;<b>Dashboard</b><br>
- <ul class="tabs-ex">
-    <li>
-      <input type="radio" name="content" id="content-1">
-      <label for="content-1">pedidos</label>
-      <article>
-            <?php
-include '../conexao/conecta.inc';
-echo '<meta charset=UTF-8>';
-$id  = $_GET['codigo']; 
-echo "<link href='../style/styleAdmin.css' rel='stylesheet' type='text/css' />";
-include '../conexao/conecta.inc';
-$sql ="SELECT * FROM  pedidos INNER JOIN itens_pedidoss ON pedidos.ID_pedidos = itens_pedidoss.ID_pedidos WHERE itens_pedidoss.ID_pedidos = '$id'";
-$result = mysql_query($sql);
-if(mysql_num_rows($result)=== 0){
-    echo 'Nenhum pedidos Foi realizado!';
-}
-echo '<table  ';
-echo '<tr>';
-echo '<th>Código do pedidos</th>';
-echo '<th>Código do Produto</th>';
-echo '<th>Data pedidos </th>';
-echo '<th>Valor pedidos</th>';
-echo '<th>Quantidade pedidos</th>';
-echo '<th>Pagamento pedidos</th>';
-echo '</tr>';
-while($pedidos = mysql_fetch_array($result)){
-    echo '<tr>';
-    echo '<td><b>'.$pedidos['ID_pedidos'].'</b></td>';  
-    echo '<td><b>'.$pedidos['ID_PRODUTO'].'</b></td>';  
-    echo '<td>'.$pedidos['DATA_pedidos'].'</td>';
-    echo '<td>'.'R$'.substr($pedidos['VALOR_pedidos'],0,6).'</td>';
-    echo '<td>'.$pedidos['QUANTIDADE_PRODUTO'].'</td>';
-     if($pedidos['PAGAMENTO_pedidos'] === '1'){
-          echo '<td><img class="icons" src="../images/yes.png"></td>';     
-          ?>
-<img class="icons" src="../images/yes.png">
-          <?php
-    }
-    if($pedidos['PAGAMENTO_pedidos'] === '0'){
-          echo '<td></td>';   
-          ?>
-<img class="icons" src="../images/not.png">< /a>        
- <?php
-    }
-    echo '</tr>';
-}
-    echo '</table>';
-?>    
+<img src="../images/pedidos.png" class="icons">&nbsp;<b>Dashboard</b><br>
 
-      </article>  
-    </li>
-
-    <li>
-      <input type="radio" name="content" id="content-2">
-      <label for="content-2">Cliente</label>
-      <article>
-
-      </article>  
-    </li>
-    <li>
-      <input type="radio" name="content" id="content-3">
-      <label for="content-3">Histórico</label>
-      <article>
-        <h2>Conteudo 3</h2>
-        
-        <p>Conteúdo 3</p>
-
-      </article>  
-    </li>
-</ul>
 </div>
 </div>
 </section>

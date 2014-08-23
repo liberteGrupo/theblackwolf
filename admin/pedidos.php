@@ -1,5 +1,23 @@
 <?php
 include '../includes/userAdm.inc';
+if(isset($_GET['acao']) && $_GET['acao'] === '1')
+    {
+ $id   =  $_GET['pedido'];
+ $acao =  $_GET['acao'];
+ $sql  = "UPDATE pedido SET PAGAMENTO_PEDIDO =  true WHERE ID_PEDIDO ='$id'";
+ if(mysql_query($sql)){
+     
+    }  
+        if(mysql_query($sql)){
+         
+            }
+} elseif(isset ($_GET['acao']) && $_GET['acao'] === '2') {
+    $id   =  $_GET['pedido'];
+    $sql  = "UPDATE pedido SET PAGAMENTO_PEDIDO =  false WHERE ID_PEDIDO ='$id'";
+    if(mysql_query($sql)){
+        
+    }
+}
 ?>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
@@ -139,12 +157,12 @@ while($pedido = mysql_fetch_array($result)){
     if($pedido['PAGAMENTO_PEDIDO'] === '1')
     {
     ?>
-   <?php echo '<td><a href="confirm.php?acao=2&pedido='.$pedido['ID_PEDIDO'].'"><img src="../images/yes.png" alt="confirmar pedido" class="icons"></a></td>'; ?>  
+   <?php echo '<td><a href="?acao=2&pedido='.$pedido['ID_PEDIDO'].'"><img src="../images/yes.png" alt="confirmar pedido" class="icons"></a></td>'; ?>  
     <?php  
     }
     if($pedido['PAGAMENTO_PEDIDO'] === '0')
     {
-      echo '<td><a href="confirm.php?acao=1&pedido='.$pedido['ID_PEDIDO'].'"><img src="../images/not.png" alt="confirmar pedido" class="icons"></a></td>';  
+      echo '<td><a href="?acao=1&pedido='.$pedido['ID_PEDIDO'].'"><img src="../images/not.png" alt="confirmar pedido" class="icons"></a></td>';  
 
     }
     if($pedido['FRETE_PEDIDO'] === '0'){

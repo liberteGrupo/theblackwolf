@@ -40,12 +40,7 @@ include 'includes/header.php';
 include 'includes/menu.php';
 ?>
 </nav>
-
-
-
-
     <div id="sobre">
-  
     <aside>
         <div class="text_sua_conta"><b>Sua Conta</b></div><br> 
             <div id="dados_conta">
@@ -54,20 +49,16 @@ include 'includes/menu.php';
  $results = mysql_query("SELECT * FROM cliente RIGHT OUTER JOIN endereco ON cliente.ID_CLIENTE ='$cod_usuario' WHERE cliente.ID_ENDERECO =  endereco.ID_ENDERECO");
  $usuarios = mysql_fetch_array($results) ; 
       echo '<a href="alterarSenha.php?codigo='.$usuarios['ID_CLIENTE'].'"> Informações de conta </a><br>';
-      echo '<a href="listaEndereco.php?codigo='.$usuarios['ID_ENDERECO'].'"> Enderecos </a><br>';
+      echo '<a href="listaEndereco.php?codigo='.$usuarios['ID_ENDERECO'].'"> Endereco </a><br>';
 ?>
 <a href="meusPedidos.php"> Meus Pedidos </a><br>
 <a href="cadastroNews.php"> Cadastro de Newsletter </a>
 </div>
 </aside>
-    
     <div class="conteudo_informacoes">
    <b>Seu painel</b><br> 
-
       <?php
 echo 'Olá '.$nomeUsuario.'!';
-   
-    
 ?>      
                 <p class="texto_conteudo">Através do Painel de Sua Conta você pode visualizar suas atividades recentes e
    atualizar suas informações. 

@@ -84,7 +84,7 @@ Lembrar minha senha
 		<div class="caixa_admin">
              <img src="../images/adm.png" class="icons">&nbsp;<b>Dashboard</b>
    <?php
-             $cod_usuario = $_SESSION['UsuarioID'];
+             $cod_usuario = $_SESSION['cod_usuario'];
              $sql         = "SELECT * FROM admin WHERE ID_ADMIN='$cod_usuario'"; 
              $result      = mysql_query($sql);
              $usuarios    = mysql_fetch_array($result);
@@ -115,27 +115,20 @@ Lembrar minha senha
     <td height="35" scope="row">Confirme Senha</td>
     <td colspan="2"><input type="password" name="confirme_senha" required></td>
   </tr>
-        </table>
-             <input name="acao" type="hidden" value="update" >
-                 <input  type="submit" value="Atualizar" class="botaoAdm" >&nbsp;&nbsp;&nbsp;&nbsp; 
+      
+    <input name="acao" type="hidden" value="update" >
+     <input  type="submit" value="Atualizar" class="botaoAdm" >&nbsp;&nbsp;&nbsp;&nbsp;
 </form>
+
 <?php 
 $nivel_necessario   = 2;
-$nivel              = $_SESSION['UsuarioNivel'] ;
-// Verifica se não há a variável da sessão que identifica o usuário
-if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] < $nivel_necessario)) 
-{
-  session_destroy();
-  header("Location:frmLogin.php"); 
-        exit;
-}elseif ($nivel === '3') {
-
-}elseif($nivel === '2'){
+if ($usuarioNivel === '3') {
+}elseif($usuarioNivel === '2'){
 echo    '<a href="inserirAdm.php"><input type="button" value="Inserir ADM" class="botaoAdm" /></a>';    
 include '../includes/listaAdm.php';
 }
-?>
-    <br><br>
+?></table>
+ <a href="metas.php">Ver metas Cadastradas</a>   <br><br>
 
 
     
